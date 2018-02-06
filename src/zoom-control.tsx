@@ -59,6 +59,7 @@ export interface Props {
   position?: AnchorLimits;
   style?: React.CSSProperties;
   className?: string;
+  tabIndex?: number;
 }
 
 export interface State {
@@ -77,7 +78,8 @@ export default class ZoomControl extends React.Component<Props, State> {
     zoomDiff: 0.5,
     onControlClick: (map: Map, zoomDiff: number) => {
       map.zoomTo(map.getZoom() + zoomDiff);
-    }
+    },
+    tabIndex: 0
   };
 
   public state = {
@@ -115,7 +117,7 @@ export default class ZoomControl extends React.Component<Props, State> {
   };
 
   public render() {
-    const { position, style, className } = this.props;
+    const { position, style, className, tabIndex } = this.props;
     const { hover } = this.state;
     const plusStyle = {
       ...buttonStyle,
@@ -127,12 +129,12 @@ export default class ZoomControl extends React.Component<Props, State> {
       ...buttonStyleMinus,
       ...hover === MINUS ? buttonStyleHovered : {}
     };
-
+    console.log('TEST tabindex:' + tabIndex);
     return (
       <div
         className={className}
         style={{ ...containerStyle, ...positions[position!], ...style }}
-        tabIndex={-1}
+        tabIndex={tabIndex}
       >
         <button
           type="button"
