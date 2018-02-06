@@ -129,7 +129,7 @@ export default class ZoomControl extends React.Component<Props, State> {
       ...buttonStyleMinus,
       ...hover === MINUS ? buttonStyleHovered : {}
     };
-    console.log('TEST tabindex:' + tabIndex);
+
     return (
       <div
         className={className}
